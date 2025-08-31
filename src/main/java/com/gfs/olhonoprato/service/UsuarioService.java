@@ -1,5 +1,6 @@
 package com.gfs.olhonoprato.service;
 
+import com.gfs.olhonoprato.exception.EmailJaCadastradoException;
 import com.gfs.olhonoprato.model.Usuario;
 import com.gfs.olhonoprato.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,11 @@ public class UsuarioService {
 
     @Transactional
     public Usuario cadastrar (Usuario novoUsuario){
+       if (usuarioRepository.findByEmail(novoUsuario.getEmail()).isPresent())
+            {
+            throw new EmailJaCadastradoException("O email informado já está em uso.");
+            }
+
         String senhaOriginal = novoUsuario.getSenha();
         String senhaHash = passwordEncoder.encode(senhaOriginal);
         novoUsuario.setSenha(senhaHash);
