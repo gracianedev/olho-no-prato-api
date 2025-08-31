@@ -11,7 +11,7 @@ Este projeto está sendo desenvolvido como parte de uma jornada de aprendizado e
 O objetivo é construir um Mínimo Produto Viável (MVP) com as seguintes funcionalidades:
 
 * [x] **Cadastro de Usuário:** Criação de novos usuários com nome, email e senha.
-* [ ] **Autenticação de Usuário:** Login e segurança dos endpoints.
+* [x] **Autenticação de Usuário:** Login e segurança dos endpoints.
 * [ ] **Registro de Peso:** Permite ao usuário salvar seu peso em uma data específica.
 * [ ] **Registro de Refeição:** Upload da foto de uma refeição (café, almoço, janta, etc.).
 * [ ] **Visualização de Histórico:** Listagem dos registros de peso e refeições por data.
@@ -72,7 +72,21 @@ Até o momento, o seguinte endpoint está disponível:
         "senha": "sua_senha_min_6_chars"
     }
     ```
-
+#### `POST /login`
+* Autentica um usuário com e-mail e senha, retornando um token JWT em caso de sucesso.
+* **Corpo da Requisição (JSON):**
+    ```json
+    {
+        "email": "seu@email.com",
+        "senha": "sua_senha_cadastrada"
+    }
+    ```
+* **Resposta de Sucesso (Status `200 OK`):**
+    ```json
+    {
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJBUEkgT2xob05v..."
+    }
+    ```
 ---
 
 ## 📝 Status do Projeto
