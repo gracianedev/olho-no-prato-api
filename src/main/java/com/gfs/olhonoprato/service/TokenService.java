@@ -3,6 +3,7 @@ package com.gfs.olhonoprato.service;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTCreationException;
+import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.gfs.olhonoprato.model.Usuario;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -28,6 +29,22 @@ public class TokenService {
                     .sign(algoritmo); // Assina o token
         } catch (JWTCreationException exception){
             throw new RuntimeException("Erro ao gerar token JWT", exception);
+        }
+    }
+
+    // Método para validar o token
+
+
+    public String getSecret(String tokenJWT) {
+        try {
+            Algorithm algoritmo = Algorithm.HMAC256(secret);
+            return JWT.require(algoritmo)
+                    .withIssuer("API OlhoNoPrato") // Verifica o emissor
+                    .build()
+                    .verify(tokenJWT) // Decodifica o token
+                    .getSubject(); // Extrai o e-mail
+        } catch (JWTVerificationException exception) {
+            throw new RuntimeException("Token JWT inválido ou expirado!");
         }
     }
 

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import java.util.List;
 
 @Service
 public class UsuarioService {
@@ -28,5 +29,9 @@ public class UsuarioService {
         String senhaHash = passwordEncoder.encode(senhaOriginal);
         novoUsuario.setSenha(senhaHash);
         return usuarioRepository.save(novoUsuario);
+    }
+
+    public List<Usuario> listarTodos() {
+        return usuarioRepository.findAll();
     }
 }
