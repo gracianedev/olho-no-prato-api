@@ -1,13 +1,12 @@
 package com.gfs.olhonoprato.controller;
 
+import com.gfs.olhonoprato.controller.dto.DadosUsuario;
 import com.gfs.olhonoprato.model.Usuario;
-import com.gfs.olhonoprato.repository.UsuarioRepository;
 import com.gfs.olhonoprato.service.UsuarioService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -30,7 +29,7 @@ public class UsuarioController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Usuario>> listarTodos() {
+    public ResponseEntity<List<DadosUsuario>> listarTodos() {
         var usuarios = usuarioService.listarTodos();
         return ResponseEntity.ok(usuarios);
     }

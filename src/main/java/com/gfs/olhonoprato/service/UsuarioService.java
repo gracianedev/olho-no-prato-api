@@ -1,5 +1,6 @@
 package com.gfs.olhonoprato.service;
 
+import com.gfs.olhonoprato.controller.dto.DadosUsuario;
 import com.gfs.olhonoprato.exception.EmailJaCadastradoException;
 import com.gfs.olhonoprato.model.Usuario;
 import com.gfs.olhonoprato.repository.UsuarioRepository;
@@ -31,7 +32,10 @@ public class UsuarioService {
         return usuarioRepository.save(novoUsuario);
     }
 
-    public List<Usuario> listarTodos() {
-        return usuarioRepository.findAll();
+    public List<DadosUsuario> listarTodos() {
+        return usuarioRepository.findAll()
+                .stream()
+                .map(DadosUsuario::new)
+                .toList();
     }
 }
