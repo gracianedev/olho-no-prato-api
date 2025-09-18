@@ -2,16 +2,17 @@ package com.gfs.olhonoprato.model;
 
 import jakarta.persistence.*;
 import lombok.*;
+
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name="registros_peso")
+@Table(name = "registros_refeicao")
+@EqualsAndHashCode(of = "id")
+@NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
-@AllArgsConstructor
-@NoArgsConstructor
-@EqualsAndHashCode(of = "id")
-public class RegistroDePeso {
+public class RegistroDeRefeicao {
 
     @Column
     @Id
@@ -19,9 +20,16 @@ public class RegistroDePeso {
     private Long id;
 
     @Column(nullable = false)
-    private Double peso;
+    private String urlFoto;
 
+    @Column
+    private String descricaoPrato;
+
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
+    private TipoRefeicao tipoRefeicao;
+
+    @Column
     private LocalDateTime dataRegistro;
 
     @ManyToOne

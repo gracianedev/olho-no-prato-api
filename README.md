@@ -13,7 +13,7 @@ O objetivo é construir um Mínimo Produto Viável (MVP) com as seguintes funcio
 * [x] **Cadastro de Usuário:** Criação de novos usuários com nome, email e senha.
 * [x] **Autenticação de Usuário:** Login com e-mail/senha, geração e validação de token JWT para proteger endpoints.
 * [x] **Registro de Peso:** Permite ao usuário salvar seu peso em uma data específica.
-* [ ] **Registro de Refeição:** Upload da foto de uma refeição (café, almoço, janta, etc.).
+* [x] **Registro de Refeição:** Upload da foto de uma refeição (café, almoço, janta, etc.).
 * [ ] **Visualização de Histórico:** Listagem dos registros de peso e refeições por data.
 
 ---
@@ -161,6 +161,51 @@ Até o momento, os seguintes endpoints estão disponíveis:
             "id": 2,
             "peso": 76.2,
             "dataRegistro": "2025-09-18T08:15:00.789012"
+        }
+    ]
+    ```
+  ### Registros de Refeição
+
+#### `POST /refeicoes`
+* **[PROTEGIDO]** Cadastra um novo registro de refeição para o usuário autenticado.
+* **Cabeçalho de Autenticação:**
+    ```
+    Authorization: Bearer <seu_token_jwt>
+    ```
+* **Corpo da Requisição (JSON):**
+    ```json
+    {
+        "urlFoto": "[http://site.com/foto.jpg](http://site.com/foto.jpg)",
+        "descricaoPrato": "Frango grelhado com salada.",
+        "tipoRefeicao": "ALMOCO"
+    }
+    ```
+* **Resposta de Sucesso (Status `201 Created`):**
+    ```json
+    {
+        "id": 1,
+        "urlFoto": "[http://site.com/foto.jpg](http://site.com/foto.jpg)",
+        "descricao": "Frango grelhado com salada.",
+        "tipo": "ALMOCO",
+        "dataRegistro": "2025-09-17T22:25:00.123456"
+    }
+    ```
+
+#### `GET /refeicoes`
+* **[PROTEGIDO]** Lista todos os registros de refeição do usuário autenticado.
+* **Cabeçalho de Autenticação:**
+    ```
+    Authorization: Bearer <seu_token_jwt>
+    ```
+* **Resposta de Sucesso (Status `200 OK`):**
+    ```json
+    [
+        {
+            "id": 1,
+            "urlFoto": "[http://site.com/foto.jpg](http://site.com/foto.jpg)",
+            "descricao": "Frango grelhado com salada.",
+            "tipo": "ALMOCO",
+            "dataRegistro": "2025-09-17T22:25:00.123456"
         }
     ]
     ```

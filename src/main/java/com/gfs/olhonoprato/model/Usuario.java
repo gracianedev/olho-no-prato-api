@@ -20,7 +20,7 @@ import java.util.List;
 public class Usuario implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long usuarioId;
+    private long id;
 
     @NotBlank(message = "O campo nome é obrigatório.")
     @Column(nullable = false)

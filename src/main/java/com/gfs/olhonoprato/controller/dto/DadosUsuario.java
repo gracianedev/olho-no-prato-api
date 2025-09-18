@@ -9,7 +9,7 @@ public record DadosUsuario(
     ){
 
     public DadosUsuario (Usuario usuario) {
-        this(usuario.getUsuarioId(),
+        this(usuario.getId(),
                 usuario.getNome(),
                 usuario.getEmail());
     }

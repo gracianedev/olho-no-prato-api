@@ -11,7 +11,7 @@ public record DadosPeso(
 ) {
 
     public DadosPeso (RegistroDePeso registroDePeso) {
-        this(registroDePeso.getRegistroId(),
+        this(registroDePeso.getId(),
                 registroDePeso.getPeso(),
                 registroDePeso.getDataRegistro());
     }

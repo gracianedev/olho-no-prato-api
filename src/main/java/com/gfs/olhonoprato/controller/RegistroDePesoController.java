@@ -1,6 +1,7 @@
-package com.gfs.olhonoprato.controller.dto;
+package com.gfs.olhonoprato.controller;
 
-import com.gfs.olhonoprato.model.RegistroDePeso;
+import com.gfs.olhonoprato.controller.dto.DadosCadastroPeso;
+import com.gfs.olhonoprato.controller.dto.DadosPeso;
 import com.gfs.olhonoprato.service.RegistroDePesoService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
