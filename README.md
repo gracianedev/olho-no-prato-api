@@ -144,7 +144,7 @@ Até o momento, os seguintes endpoints estão disponíveis:
     ```
 
 #### `GET /registros-peso`
-* **[PROTEGIDO]** Lista todos os registros de peso do usuário autenticado.
+* **[PROTEGIDO]** Lista apenas os registros de peso pertencentes ao usuário autenticado.
 * **Cabeçalho de Autenticação:**
     ```
     Authorization: Bearer <seu_token_jwt>
@@ -192,7 +192,7 @@ Até o momento, os seguintes endpoints estão disponíveis:
     ```
 
 #### `GET /refeicoes`
-* **[PROTEGIDO]** Lista todos os registros de refeição do usuário autenticado.
+* **[PROTEGIDO]** Lista todos os registros de refeição pertencentes ao usuário autenticado.
 * **Cabeçalho de Autenticação:**
     ```
     Authorization: Bearer <seu_token_jwt>

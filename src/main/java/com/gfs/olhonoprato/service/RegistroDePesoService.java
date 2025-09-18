@@ -33,7 +33,8 @@ public class RegistroDePesoService {
     }
 
     public List<DadosPeso> listarTodos () {
-       return registroDePesoRepository.findAll()
+        var usuario = (Usuario) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        return registroDePesoRepository.findByUsuario(usuario)
                .stream()
                .map(DadosPeso::new)
                .toList();

@@ -35,7 +35,8 @@ public class RegistroDeRefeicaoService {
     }
 
     public List<DadosRefeicao> listarTodos(){
-        return refeicaoRepository.findAll()
+        var usuario = (Usuario) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        return refeicaoRepository.findByUsuario(usuario)
                 .stream()
                 .map(DadosRefeicao::new)
                 .toList();
