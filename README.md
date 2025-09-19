@@ -12,9 +12,11 @@ O objetivo é construir um Mínimo Produto Viável (MVP) com as seguintes funcio
 
 * [x] **Cadastro de Usuário:** Criação de novos usuários com nome, email e senha.
 * [x] **Autenticação de Usuário:** Login com e-mail/senha, geração e validação de token JWT para proteger endpoints.
-* [x] **Registro de Peso:** Permite ao usuário salvar seu peso em uma data específica.
-* [x] **Registro de Refeição:** Upload da foto de uma refeição (café, almoço, janta, etc.).
-* [ ] **Visualização de Histórico:** Listagem dos registros de peso e refeições por data.
+* [x] **CRUD de Registro de Peso:** Permite ao usuário salvar seu peso em uma data específica.
+* [x] **CRUD de Registro de Refeição:** Upload da foto de uma refeição (café, almoço, janta, etc.).
+* [x] **Segurança:** Endpoints protegidos, garantindo que cada usuário só acesse seus próprios dados.
+* [x] **Paginação e Ordenação:** As listagens de dados são paginadas para melhor performance.
+* [x] **Busca Avançada:** Endpoints para filtrar registros por tipo e/ou período.
 
 ---
 
@@ -145,6 +147,8 @@ Até o momento, os seguintes endpoints estão disponíveis:
 
 #### `GET /registros-peso`
 * **[PROTEGIDO]** Lista apenas os registros de peso pertencentes ao usuário autenticado.
+* **Parâmetros (Opcionais):** `?page=0`, `?size=10`, `?sort=dataRegistro,desc`
+* **Exemplo:** `/registros-peso?size=5&page=1`
 * **Cabeçalho de Autenticação:**
     ```
     Authorization: Bearer <seu_token_jwt>
@@ -164,6 +168,13 @@ Até o momento, os seguintes endpoints estão disponíveis:
         }
     ]
     ```
+  #### `GET /registros-peso/buscar`
+* **[PROTEGIDO]** Busca registros de peso do usuário por um período.
+* **Parâmetros (Obrigatórios):**
+    * `dataInicial`: Data de início no formato `YYYY-MM-DD`.
+    * `dataFinal`: Data de fim no formato `YYYY-MM-DD`.
+* **Exemplo:** `/registros-peso/buscar?dataInicial=2025-09-01&dataFinal=2025-09-30`
+
   ### Registros de Refeição
 
 #### `POST /refeicoes`
@@ -193,6 +204,8 @@ Até o momento, os seguintes endpoints estão disponíveis:
 
 #### `GET /refeicoes`
 * **[PROTEGIDO]** Lista todos os registros de refeição pertencentes ao usuário autenticado.
+* **Parâmetros (Opcionais):** `?page=0`, `?size=10`, `?sort=dataRegistro,desc`
+* **Exemplo:** `/refeicoes?size=5`
 * **Cabeçalho de Autenticação:**
     ```
     Authorization: Bearer <seu_token_jwt>
@@ -209,6 +222,13 @@ Até o momento, os seguintes endpoints estão disponíveis:
         }
     ]
     ```
+#### `GET /refeicoes/buscar`
+* **[PROTEGIDO]** Busca registros de refeição do usuário por tipo e período.
+* **Parâmetros (Obrigatórios):**
+    * `tipo`: `CAFE_DA_MANHA`, `ALMOCO`, `JANTAR` ou `LANCHE`.
+    * `dataInicial`: Data de início no formato `YYYY-MM-DD`.
+    * `dataFinal`: Data de fim no formato `YYYY-MM-DD`.
+* **Exemplo:** `/refeicoes/buscar?tipo=ALMOCO&dataInicial=2025-09-15&dataFinal=2025-09-20`
 
 ## 📝 Status do Projeto
 
