@@ -50,10 +50,54 @@ Você pode interagir com a API hospedada usando qualquer cliente HTTP, como o Po
 
 Lembre-se que o primeiro acesso após 15 minutos de inatividade pode ser lento devido à hibernação do plano gratuito do Render.
 
-### Endpoints da API
+## 📋 Endpoints da API
 
-A documentação completa dos endpoints (cadastro, login, buscas, etc.) continua a mesma, apenas substitua `http://localhost:8080` pela URL base acima.
+A API está disponível publicamente na seguinte URL base:
 
+* **URL Base:** `https://olhonoprato-api.onrender.com`
+
+**Lembrete:** A primeira requisição após 15 minutos de inatividade pode ser lenta devido à hibernação do plano gratuito do Render. Todos os endpoints marcados como **[PROTEGIDO]** exigem um token JWT no cabeçalho `Authorization`.
+
+---
+### Autenticação e Usuários
+
+#### `POST /usuarios`
+* **[PÚBLICO]** Cadastra um novo usuário no sistema.
+* **URL Completa:** `https://olhonoprato-api.onrender.com/usuarios`
+
+#### `POST /login`
+* **[PÚBLICO]** Autentica um usuário, retornando um token JWT.
+* **URL Completa:** `https://olhonoprato-api.onrender.com/login`
+
+---
+### Registros de Peso
+
+#### `POST /pesos`
+* **[PROTEGIDO]** Cadastra um novo registro de peso.
+* **URL Completa:** `https://olhonoprato-api.onrender.com/pesos`
+
+#### `GET /pesos`
+* **[PROTEGIDO]** Lista os registros de peso do usuário de forma paginada.
+* **Exemplo:** `https://olhonoprato-api.onrender.com/pesos?size=5&sort=dataRegistro,desc`
+
+#### `GET /pesos/buscar`
+* **[PROTEGIDO]** Busca registros de peso do usuário por um período.
+* **Exemplo:** `https://olhonoprato-api.onrender.com/pesos/buscar?dataInicial=2025-10-01&dataFinal=2025-10-31`
+
+---
+### Registros de Refeição
+
+#### `POST /refeicoes`
+* **[PROTEGIDO]** Cadastra um novo registro de refeição.
+* **URL Completa:** `https://olhonoprato-api.onrender.com/refeicoes`
+
+#### `GET /refeicoes`
+* **[PROTEGIDO]** Lista os registros de refeição do usuário de forma paginada.
+* **Exemplo:** `https://olhonoprato-api.onrender.com/refeicoes?page=1&size=5`
+
+#### `GET /refeicoes/buscar`
+* **[PROTEGIDO]** Busca registros de refeição do usuário por tipo e período.
+* **Exemplo:** `https://olhonoprato-api.onrender.com/refeicoes/buscar?tipo=ALMOCO&dataInicial=2025-09-15&dataFinal=2025-09-20`
 ---
 
 ## 💻 Como Executar o Projeto Localmente
