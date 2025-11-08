@@ -1,5 +1,5 @@
-# Estágio 1: Compilação do projeto com Maven
-FROM openjdk:21-jdk-slim AS build
+# Estágio 1: Compilação do projeto com Eclipse Temurin (JDK)
+FROM eclipse-temurin:21-jdk AS build
 WORKDIR /workspace/app
 
 COPY .mvn/ .mvn
@@ -9,7 +9,7 @@ RUN ./mvnw dependency:go-offline
 COPY src ./src
 RUN ./mvnw install -DskipTests
 
-# Estágio 2: Imagem final de execução, usando uma base diferente e válida
+# Estágio 2: Imagem final de execução (JRE)
 FROM eclipse-temurin:21-jre-jammy
 WORKDIR /app
 
